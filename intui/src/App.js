@@ -1,13 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function LogRegister() {
+import Login from './auth/Login';
+import Home from './components/Home';
+import Registration from './auth/Registration'
+import { BrowserRouter as Router, Link, Route,  Switch,} from 'react-router-dom'
+function App() {
   return (
     <div className="App">
-      <p>Rajiv Ranjan</p>
+      <Router>
+      <Link to="/">Login</Link>
+      <Link to="home">Home</Link>
+      <Link to="resgistration">Registration</Link>
+
+      <Switch>
+        <Route path="/">
+          <Login />
+        </Route>
+        <Route path="/home">
+          <Home />
+          </Route>
+        <Route path="/resgistration">
+          <Registration />
+          </Route>
+      </Switch>
+      </Router>
     </div>
   );
 }
 
-export default LogRegister;
+export default App;
