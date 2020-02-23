@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthBackendService from '../backend/AuthBackendService'
 import axios from 'axios';
 
+window.axios =axios;
 class Registration extends Component {
   constructor(){
     super()
@@ -21,32 +22,42 @@ class Registration extends Component {
       userType : ''
     };
 
-   // this.handleChange = this.handleChange.bind(this);
-    //this.register = this.register.bind(this);
-    const authBackendService =  new AuthBackendService();
+   this.register = this.register.bind(this);
+   
   }
   register(){
-      const formdata = {
-        firstName: "Rajiv", lastName: "Ranjan", middleName: "", username: "", password: "", confirmPassword: "", dOB: "", address:{}, email: "", phoneNo: 0, userType: ""
-      }
-      window.axios.post('http://192.168.99.1/contractServices/user/register', formdata).then(response=>{
-        console.log(response);
-      });
+    const authBackendService =  new AuthBackendService();
+    const formdata = this.state;
+    console.log(formdata)
+    const response = authBackendService.saveUser(formdata);
+    console.log(response);
   }
+  
    render() {
     return(
         <div> 
-            <input type="text" name="firstName" placeholder="Please enter your first name." /> <br /><br />
-            <input type="text" name="middleName" placeholder="Please enter your middle name." /> <br /><br />
-            <input type="text" name="lastName" placeholder="Please enter your last name." /> <br /><br />
-            <input type="text" name="username" placeholder="Please enter your user ID." /> <br /><br />
-           <input type="password" name="password" placeholder="Please enter your password." /> <br /><br />
-           <input type="password" name="confirmPassword" placeholder="Please renter your password." /> <br /><br />
-           <input type="text" name="dOB" placeholder="Please enter your DOB." /> <br /><br />
-           <input type="text" name="address" placeholder="Please enter your adress." /> <br /><br />
-           <input type="text" name="email" placeholder="Please enter your email adress." /> <br /><br />
-           <input type="text" name="phoneNo" placeholder="Please enter your phoneNo." /> <br /><br />
-           <input type="text" name="userType" placeholder="Please enter your userType." /> <br /><br />
+            <input type="text" name="firstName" placeholder="Please enter your first name."
+             onChange={event => {this.setState({firstName: event.target.value})}}/> <br /><br />
+            <input type="text" name="middleName" placeholder="Please enter your middle name."
+             onChange={event => {this.setState({middleName: event.target.value})}}/> <br /><br />
+            <input type="text" name="lastName" placeholder="Please enter your last name." 
+            onChange={event => {this.setState({lastName: event.target.value})}}/> <br /><br />
+            <input type="text" name="username" placeholder="Please enter your user ID." 
+            onChange={event => {this.setState({username: event.target.value})}}/> <br /><br />
+           <input type="password" name="password" placeholder="Please enter your password." 
+           onChange={event => {this.setState({password: event.target.value})}}/> <br /><br />
+           <input type="password" name="confirmPassword" placeholder="Please renter your password." 
+           onChange={event => {this.setState({confirmPassword: event.target.value})}}/> <br /><br />
+           <input type="text" name="dOB" placeholder="Please enter your DOB." 
+           onChange={event => {this.setState({dOB: event.target.value})}} /> <br /><br />
+           <input type="text" name="address" placeholder="Please enter your adress."
+            onChange={event => {this.setState({address: {}})}}/> <br /><br />
+           <input type="text" name="email" placeholder="Please enter your email adress."
+            onChange={event => {this.setState({email: event.target.value})}} /> <br /><br />
+           <input type="text" name="phoneNo" placeholder="Please enter your phoneNo." 
+           onChange={event => {this.setState({phoneNo: event.target.value})}}/> <br /><br />
+           <input type="text" name="userType" placeholder="Please enter your userType." 
+           onChange={event => {this.setState({userType: event.target.value})}}/> <br /><br />
             <button onClick={()=>this.register()}>Register</button>
         </div>
     ); 

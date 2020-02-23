@@ -14,10 +14,10 @@ function App() {
         <Link to='about'>About</Link>
         <Link to="resgistration">Registration</Link>
 
-          <Switch><Route path='/about' > <About /></Route></Switch>
-          <Switch><Route path='/home'> <Home/> </Route></Switch>
-          <Switch><Route path='/login'> <Login/> </Route></Switch>
-          <Switch><Route path='/resgistration'> <Registration/> </Route></Switch>
+        <Switch><Route path='/about' > <About /></Route></Switch>
+        <Switch><Route path='/home'> <Home/> </Route></Switch>
+        <Switch><Route path='/login'> <Login/> </Route></Switch>
+        <Switch><Route path='/resgistration'> <Registration/> </Route></Switch>
       </Router>
     </div>
   );
