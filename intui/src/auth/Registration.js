@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthBackendService from '../backend/AuthBackendService';
-import Login from './Login';
+import Login from '.d:
+/Login';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import AppBar from "material-ui/AppBar";
@@ -34,12 +35,12 @@ class Registration extends Component {
     console.log(formdata)
     const response = authBackendService.saveUser(formdata);
     if(response){
-      //TODO
+      
     }
   }
 
   redirectToLogin(){
-    return <Login/>
+  return (<Login/>) 
   }
    
    render() {
