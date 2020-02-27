@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AuthBackendService from '../backend/AuthBackendService';
-import Login from '.d:
-/Login';
+import Login from './Login';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import AppBar from "material-ui/AppBar";
