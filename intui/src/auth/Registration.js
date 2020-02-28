@@ -4,7 +4,9 @@ import Login from './Login';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import AppBar from "material-ui/AppBar";
+import Typography from '@material-ui/core/Typography'
 import RaisedButton from 'material-ui/RaisedButton';
+import { blueA200 } from "material-ui/styles/colors";
 
 class Registration extends Component {
   constructor(){
@@ -39,14 +41,14 @@ class Registration extends Component {
   }
 
   redirectToLogin(){
-  return (<Login/>) 
+  return <Login/>;
   }
    
    render() {
     return(
         <MuiThemeProvider> 
           <React.Fragment>
-            <AppBar title="User Registration Page" />
+            <Typography variant="h3" style={styles.typ}> User Registration Page</Typography>
               <TextField type="text" name="firstName" floatingLabelText="First Name"
                hintText="Please enter your first name." style={styles.txt}
                 onChange={event => {this.setState({firstName: event.target.value})}}/>
@@ -81,7 +83,7 @@ class Registration extends Component {
               hintText="Please enter your userType." style={styles.txt}
               onChange={event => {this.setState({userType: event.target.value})}}/> <br />
               <RaisedButton style={styles.button} primary={true} onClick={()=>this.register()}>Register</RaisedButton>
-              <RaisedButton style={styles.button} primary={true} onlcik={()=>this.redirectToLogin()} >Exist User</RaisedButton>
+              <RaisedButton style={styles.button} primary={true} onClick={()=>this.redirectToLogin()} >Exist User</RaisedButton>
           </React.Fragment>
         </MuiThemeProvider>
     ); 
@@ -94,6 +96,9 @@ const styles = {
   },
   txt : {
     margin : 20
+  },
+  typ : {
+    color: blueA200
   }
 }
 export default Registration;

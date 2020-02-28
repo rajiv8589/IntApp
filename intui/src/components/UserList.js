@@ -6,9 +6,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography'
 
 import AuthBackendService from '../backend/AuthBackendService';
 import { lightBlue100 } from 'material-ui/styles/colors';
+import { blueA200 } from 'material-ui/styles/colors';
 
 
 class  UserList extends Component {
@@ -47,7 +49,9 @@ class  UserList extends Component {
         const rows = this.state.userData;
         console.log("render" + rows);
         return (
-            <TableContainer component={Paper}>
+          <React.Fragment>
+          <Typography variant="h3" style={styles.typ}>All Registered User List</Typography>
+            <TableContainer component={Paper} style={styles.cont}>
               <Table  aria-label="simple table">
                 <TableHead style={styles.header}>
                   <TableRow>
@@ -79,6 +83,7 @@ class  UserList extends Component {
                 </TableBody>
               </Table>
             </TableContainer>
+            </React.Fragment>
           );
     }
 
@@ -88,6 +93,13 @@ const styles = {
     header: {
         color: lightBlue100,
         margin: 15
+    },
+    typ : {
+      color: blueA200
+    },
+    cont : {
+      width: 1300,
+      padding: 40
     }
 }
 

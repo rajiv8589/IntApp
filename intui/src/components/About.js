@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
+import Typography from '@material-ui/core/Typography'
+import { blueA200 } from 'material-ui/styles/colors';
 
 class  About extends Component {
 
@@ -9,7 +10,7 @@ class  About extends Component {
         return( 
         <MuiThemeProvider > 
             <React.Fragment>
-                <AppBar title="About Contract Biding Services"/>
+                <Typography variant="h3" style={styles.typ}> About Contract Biding Services</Typography>
                 <h1>Here is details about contract services.</h1>
             </React.Fragment>
         </MuiThemeProvider>
@@ -17,6 +18,12 @@ class  About extends Component {
 
     }
 
+}
+
+const styles = {
+    typ:{
+        color: blueA200
+    }
 }
 
 export default About;
