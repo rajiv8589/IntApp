@@ -2,18 +2,16 @@ package com.intapp.contractService.dao.entity;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 import com.intapp.contractService.model.UserType;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Table(name="user")
-@Entity
+@Document
 public class UserInfo {
 
-	@Id
+
 	private String id;
 	
 	private String username;
