@@ -1,13 +1,12 @@
-package com.techpimers.security.springsecurityclient;
+package com.techprimers.security.springsecurityauthserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringSecurityClientApplication {
+public class SpringSecurityAuthServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringSecurityClientApplication.class, args);
+		SpringApplication.run(SpringSecurityAuthServerApplication.class, args);
 	}
-
 }
