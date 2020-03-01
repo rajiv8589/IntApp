@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import AuthBackendService from '../backend/AuthBackendService';
-import Login from './Login';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
-import AppBar from "material-ui/AppBar";
 import Typography from '@material-ui/core/Typography'
 import RaisedButton from 'material-ui/RaisedButton';
 import { blueA200 } from "material-ui/styles/colors";
+import {Redirect} from 'react-router-dom'
+
 
 class Registration extends Component {
   constructor(){
@@ -24,27 +24,38 @@ class Registration extends Component {
       address : {},
       email : '',
       phoneNo : 0,
-      userType : ''
+      userType : '',
+      redirect : false,
+      redirectUserList :false
     };
 
    this.register = this.register.bind(this);
-   this.redirectToLogin = this.redirectToLogin.bind(this);
+   //this.redirectToLogin = this.redirectToLogin.bind(this);
   }
   register(){
     const authBackendService =  new AuthBackendService();
-    const formdata = this.state;
-    console.log(formdata)
-    const response = authBackendService.saveUser(formdata);
-    if(response){
-      
-    }
+    const {firstName, middleName, lastName, username, password, confirmPassword,
+    dOB, address, email, phoneNo, userType} = this.state;
+    const formdata = {firstName, middleName, lastName, username, password, confirmPassword, dOB, address, email, phoneNo, userType}
+    authBackendService.saveUser(formdata).then(response =>{
+      if(response.data){
+        this.setState({redirectUserList: true});
+      }
+    } );
   }
 
-  redirectToLogin(){
-  return <Login/>;
+  redirectToLogin() {
+    this.setState({redirect: true});
   }
    
    render() {
+     const {redirect, redirectUserList} = this.state;
+     if(redirect){
+      return (<Redirect to='/login'/>)
+     }
+     if(redirectUserList){
+      return (<Redirect to='userList'/>)
+     }
     return(
         <MuiThemeProvider> 
           <React.Fragment>
@@ -64,7 +75,7 @@ class Registration extends Component {
               <TextField type="password" name="password" floatingLabelText="Password"
               hintText="Please enter your password." style={styles.txt}
               onChange={event => {this.setState({password: event.target.value})}}/>
-              <TextField type="password" name="confirmPassword" 
+              <TextField type="password" name="confirmPassword" floatingLabelText="Confirm Password"
               hintText="Please renter your password." style={styles.txt}
               onChange={event => {this.setState({confirmPassword: event.target.value})}}/> <br />
               <TextField type="text" name="dOB" floatingLabelText="DOB" style={styles.txt} 
@@ -83,7 +94,7 @@ class Registration extends Component {
               hintText="Please enter your userType." style={styles.txt}
               onChange={event => {this.setState({userType: event.target.value})}}/> <br />
               <RaisedButton style={styles.button} primary={true} onClick={()=>this.register()}>Register</RaisedButton>
-              <RaisedButton style={styles.button} primary={true} onClick={()=>this.redirectToLogin()} >Exist User</RaisedButton>
+              <RaisedButton style={styles.button} primary={true} onClick={() => this.redirectToLogin()} >Exist User</RaisedButton>
           </React.Fragment>
         </MuiThemeProvider>
     ); 
